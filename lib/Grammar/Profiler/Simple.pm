@@ -6,13 +6,13 @@ my class ProfiledGrammarHOW is Metamodel::GrammarHOW is Mu {
         my $meth := callsame;
         substr($name, 0, 1) eq '!' || $name eq any(<parse CREATE Bool defined MATCH WHAT perl>) ??
             $meth !!
-            -> $c, |$args {
+            -> $c, |args {
                 my $grammar = $obj.WHAT.perl;
                 %timing{$grammar} //= {};                   # Vivify grammar hash
                 %timing{$grammar}{$meth.name} //= {};       # Vivify method hash
                 my %t := %timing{$grammar}{$meth.name};
                 my $start = now;
-                my $result := $meth($obj, |$args);
+                my $result := $meth($obj, |args);
                 %t<time> += now - $start;
                 %t<calls>++;
                 $result
