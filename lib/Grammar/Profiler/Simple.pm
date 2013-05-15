@@ -4,10 +4,10 @@ my class ProfiledGrammarHOW is Metamodel::GrammarHOW is Mu {
 
     method find_method($obj, $name) {
         my $meth := callsame;
-        substr($name, 0, 1) eq '!' || $name eq any(<parse CREATE Bool defined MATCH WHAT perl>) ??
+        substr($name, 0, 1) eq '!' || $name eq any(< parse CREATE Bool defined MATCH >) ??
             $meth !!
             -> $c, |args {
-                my $grammar = $obj.WHAT.perl;
+                my $grammar = $obj.^name;
                 %timing{$grammar} //= {};                   # Vivify grammar hash
                 %timing{$grammar}{$meth.name} //= {};       # Vivify method hash
                 my %t := %timing{$grammar}{$meth.name};
