@@ -1,10 +1,12 @@
 my %timing;
 
-my class ProfiledGrammarHOW is Metamodel::GrammarHOW is Mu {
+my class ProfiledGrammarHOW is Metamodel::GrammarHOW {
 
     method find_method($obj, $name) {
         my $meth := callsame;
-        substr($name, 0, 1) eq '!' || $name eq any(< parse CREATE Bool defined MATCH >) ??
+        substr($name, 0, 1) eq '!' ||
+        substr($name, 0, 8) eq 'dispatch' || 
+        $name eq any(« parse CREATE Bool defined MATCH Stringy Str WHERE orig ») ??
             $meth !!
             -> $c, |args {
                 my $grammar = $obj.^name;
