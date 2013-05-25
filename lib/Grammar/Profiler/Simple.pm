@@ -26,13 +26,15 @@ my class ProfiledGrammarHOW is Metamodel::GrammarHOW {
     }
 }
 
-multi sub get-timing () is export { %timing }
-multi sub get-timing ($grammar) is export { %timing{$grammar} }
-multi sub get-timing ($grammar, $rule) is export { %timing{$grammar}{$rule} }
+proto sub get-timing (|) is export { * }
+multi sub get-timing () { %timing }
+multi sub get-timing ($grammar) { %timing{$grammar} }
+multi sub get-timing ($grammar, $rule) { %timing{$grammar}{$rule} }
 
-multi sub reset-timing () is export { %timing = () }
-multi sub reset-timing ($grammar) is export { %timing{$grammar} = () }
-multi sub reset-timing ($grammar, $rule) is export { %timing{$grammar}{$rule} = () }
+proto sub reset-timing (|) is export { * }
+multi sub reset-timing () { %timing = () }
+multi sub reset-timing ($grammar) { %timing{$grammar} = () }
+multi sub reset-timing ($grammar, $rule) { %timing{$grammar}{$rule} = () }
 
 my module EXPORTHOW { }
 EXPORTHOW.WHO.<grammar> = ProfiledGrammarHOW;
