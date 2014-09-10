@@ -6,7 +6,7 @@ my class ProfiledGrammarHOW is Metamodel::GrammarHOW {
         my $meth := callsame;
         substr($name, 0, 1) eq '!' ||
         substr($name, 0, 8) eq 'dispatch' || 
-        $name eq any(« parse CREATE Bool defined MATCH Stringy Str WHERE orig ») ??
+        $name eq any(« parse CREATE Bool defined MATCH Stringy Str WHERE orig BUILD DESTROY ») ??
             $meth !!
             -> $c, |args {
                 my $grammar = $obj.^name;
