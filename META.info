@@ -1,4 +1,5 @@
 {
+    "perl"          : "6.*",
     "name"          : "Grammar::Profiler::Simple",
     "version"       : "0.01",
     "description"   : "Simple rule profiling for Perl 6 grammars",
