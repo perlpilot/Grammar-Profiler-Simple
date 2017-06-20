@@ -46,4 +46,3 @@ and the cumulative time that was spent executing each rule.  For example
     say "MyRule was called {get-timing('MyGrammar','MyRule')<calls>} times";
     say "The total time executing MyRule was {get-timing('MyGrammar','MyRule')<time>} seconds";
 
-
